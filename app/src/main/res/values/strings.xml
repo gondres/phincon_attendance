@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="intro_desc_one">Kehadiran sistem absensi digital merupakan\npenemuan yang mampu menggantikan pencatatan data\nkehadiran secara manual</string>
+    <string name="content_login_fill">Please fill Username &amp; password to login your app account</string>
+    <string name="content_register_fill">Please fill Fullname, No. KTP, Ship &amp; Password to register your app</string>
+    <string name="phincon_address">Office. 88 @Kasablanka Office Tower 18th Floor</string>
+    <string name="telkomsel_address">Jl. Jend. Gatot Subroto Kav. 52. Jakarta Selatan</string>
+    <string name="home_address">Jakarta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
