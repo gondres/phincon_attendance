@@ -12,6 +12,7 @@ import com.example.myapplication.databinding.ActivityRegisterScreenBinding
 import com.example.myapplication.history_screen.HistoryFragment
 import com.example.myapplication.home_screen.HomeFragment
 import com.example.myapplication.profile_screen.ProfileFragment
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
-
+        FirebaseApp.initializeApp(this)
         replaceFragment(HomeFragment())
         binding.apply {
             bottomNavigation.setOnItemSelectedListener {

@@ -26,17 +26,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome To Login"
                 android:layout_marginLeft="20dp"
+                android:text="Welcome To Login"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:lineHeight="24sp"
-                android:layout_marginLeft="20dp"
                 android:text="@string/content_login_fill"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -66,12 +66,12 @@
             android:textSize="14sp" />
 
         <EditText
-
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/edittext_rounded"
             android:hint="Username"
             android:padding="10dp"
@@ -87,12 +87,12 @@
             android:textSize="14sp" />
 
         <EditText
-
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/edittext_rounded"
             android:hint="Password"
             android:inputType="textPassword"
@@ -119,9 +119,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/btn_rounded_yellow"
         android:text="Login Now"
         android:textColor="@color/black_color"
@@ -134,23 +134,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:text="Don't have account? please"
         android:textAlignment="center"
         android:textColor="@color/grey_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
+
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:text="Register"
         android:textAlignment="center"
         android:textColor="@color/blue_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvAlready"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvAlready" />
 </androidx.constraintlayout.widget.ConstraintLayout>

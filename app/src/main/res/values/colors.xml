@@ -10,6 +10,7 @@
 
     <color name="background_app">#F8F9F9</color>
     <color name="blue_color">#0063C6</color>
+    <color name="blue_light_Color">#DFE7F5</color>
     <color name="grey_color">#77869E</color>
     <color name="black_color">#042C5C</color>
     <color name="yellow_color">#FFC33A</color>

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.BaseParam
+import com.example.myapplication.DataPref
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityIntroScreenBinding
 import com.example.myapplication.introduce_screen.adapter.IntroPagerAdapter
@@ -73,11 +74,13 @@ class IntroScreenActivity : AppCompatActivity() {
 
         }
         binding.btnLogin.setOnClickListener {
+            DataPref.showIntro(this,false)
             val intent = Intent(this, LoginScreenActivity::class.java)
             startActivity(intent)
             finish()
         }
         binding.btnSignup.setOnClickListener {
+            DataPref.showIntro(this,false)
             val intent = Intent(this, RegisterScreenActivity::class.java)
             startActivity(intent)
             finish()

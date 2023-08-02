@@ -15,8 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -62,6 +62,7 @@
                 android:weightSum="2">
 
                 <TextView
+                    android:id="@+id/tvHour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -71,6 +72,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -89,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/ImageView"
                 android:layout_width="150dp"
@@ -103,138 +106,161 @@
                 android:layout_alignTop="@id/ImageView"
                 android:layout_alignRight="@id/ImageView"
                 android:layout_alignBottom="@id/ImageView"
-                android:gravity="center"
-                android:textSize="20sp"
                 android:fontFamily="@font/avenir_bold"
+                android:gravity="center"
                 android:text="CHECK IN"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </RelativeLayout>
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="370dp"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="370dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
-                android:textSize="18sp"
-                android:textFontWeight="900"
                 android:fontFamily="@font/avenir_normal"
-                android:textColor="@color/black_color"/>
-            
+                android:text="Location"
+                android:textColor="@color/black_color"
+                android:textFontWeight="900"
+                android:textSize="18sp" />
+
             <LinearLayout
                 android:id="@+id/phinconContainer"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/background_rounded_container"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <ImageView
+                    android:id="@+id/ivPhincon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/image_phincon"/>
+                    android:src="@drawable/image_phincon" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tvPhincon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/avenir_normal"
                         android:text="PT Phincon"
-                        android:textColor="@color/black_color"/>
+                        android:textColor="@color/black_color" />
+
                     <TextView
-                        android:textSize="13sp"
+                        android:id="@+id/tvPhinconAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/avenir_normal"
                         android:text="@string/phincon_address"
-                        android:textColor="@color/grey_color"/>
+                        android:textColor="@color/grey_color"
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/telkomselContainer"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/background_rounded_container"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/image_telkomsel"/>
+                    android:src="@drawable/image_telkomsel" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tvTelkomsel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/avenir_normal"
                         android:text="Telkomsel Smart Office"
-                        android:textColor="@color/black_color"/>
+                        android:textColor="@color/black_color" />
+
                     <TextView
-                        android:textSize="13sp"
+                        android:id="@+id/tvTelkomselAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/avenir_normal"
                         android:text="@string/telkomsel_address"
-                        android:textColor="@color/grey_color"/>
+                        android:textColor="@color/grey_color"
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/homeContainer"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/background_rounded_container"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/image_home"/>
+                    android:src="@drawable/image_home" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tvHome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/avenir_normal"
                         android:text="Home"
-                        android:textColor="@color/black_color"/>
+                        android:textColor="@color/black_color" />
+
                     <TextView
-                        android:textSize="13sp"
+                        android:id="@+id/tvHomeAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/avenir_normal"
                         android:text="@string/home_address"
-                        android:textColor="@color/grey_color"/>
+                        android:textColor="@color/grey_color"
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </LinearLayout>

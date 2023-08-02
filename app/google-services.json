@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "306588654223",
+    "project_id": "phincon-attendance-f3498",
+    "storage_bucket": "phincon-attendance-f3498.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306588654223:android:ee75a1371f4131b7c3eefa",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306588654223-oivqjn1r7tg2mif6vmhbc39pqd1vfj76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD74hEIy9tJO1ImYzodgQtu5ryHA-Z_aKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306588654223-oivqjn1r7tg2mif6vmhbc39pqd1vfj76.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

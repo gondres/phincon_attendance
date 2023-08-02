@@ -15,4 +15,6 @@ object BaseParam {
     const val introDescThree = "Kehadiran sistem absensi digital merupakan\npenemuan yang mampu menggantikan pencatatan data\nkehadiran secara manual"
 
     const val contentFill = "Please fill Username & password to login your app account"
+
+    const val attendaceSharedPref = "ATTENDANCE_SHARED_PREF"
 }
