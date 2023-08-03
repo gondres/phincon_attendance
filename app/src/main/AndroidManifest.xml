@@ -11,21 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity android:name=".forget_password.ForgetScreenActivity"
+        <activity android:name=".pages.forget_password.ForgetScreenActivity"
             android:exported="false"/>
         <activity
-            android:name=".register_screen.RegisterScreenActivity"
+            android:name=".pages.register_screen.RegisterScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".login_screen.LoginScreenActivity"
+            android:name=".pages.login_screen.LoginScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".introduce_screen.IntroScreenActivity"
+            android:name=".pages.introduce_screen.IntroScreenActivity"
             android:exported="false">
 
         </activity>
         <activity
-            android:name=".splash_screen.SplashScreenActivity"
+            android:name=".pages.splash_screen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,9 +9,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.databinding.ActivityRegisterScreenBinding
-import com.example.myapplication.history_screen.HistoryFragment
-import com.example.myapplication.home_screen.HomeFragment
-import com.example.myapplication.profile_screen.ProfileFragment
+import com.example.myapplication.pages.history_screen.HistoryFragment
+import com.example.myapplication.pages.home_screen.HomeFragment
+import com.example.myapplication.pages.profile_screen.ProfileFragment
 import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
