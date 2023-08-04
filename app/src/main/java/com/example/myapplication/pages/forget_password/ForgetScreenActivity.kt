@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityForgetPasswordScreenBinding
 import com.example.myapplication.databinding.ActivityIntroScreenBinding
 import com.example.myapplication.databinding.ActivityLoginScreenBinding
+import com.example.myapplication.pages.forget_password.view_model.ForgetViewModel
 import com.example.myapplication.pages.login_screen.LoginScreenActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgetScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityForgetPasswordScreenBinding
     private lateinit var auth: FirebaseAuth
+    private  val viewModel : ForgetViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,18 +42,18 @@ class ForgetScreenActivity : AppCompatActivity() {
         binding.btnReset.setOnClickListener {
             val email = binding.etEmail.text.toString()
             if (email.isNotEmpty()) {
-                auth.sendPasswordResetEmail(email).addOnCompleteListener {
-                    if (it.isSuccessful) {
+                viewModel.postForget(email)
+                viewModel.isSuccess.observe(this,{
+                    if (it){
                         Toast.makeText(this, "Check email to reset password", Toast.LENGTH_SHORT)
                             .show()
                         val intent = Intent(this, LoginScreenActivity::class.java)
                         startActivity(intent)
                         finish()
-                    } else {
-                        Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
                     }
-
-                }
+                })
             } else {
                 Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
             }

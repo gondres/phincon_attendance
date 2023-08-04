@@ -1,14 +1,18 @@
 package com.example.myapplication.pages.history_screen.day_fragment
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentDayBinding
 import com.example.myapplication.pages.history_screen.day_fragment.adapter.DayListAdapter
 import com.example.myapplication.model.AttendanceModel
+import com.example.myapplication.pages.history_screen.day_fragment.view_model.DayViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
@@ -18,6 +22,7 @@ class DayFragment : Fragment() {
 
     private lateinit var binding: FragmentDayBinding
     private lateinit var listDayAttendance: MutableList<AttendanceModel>
+    private val viewModel : DayViewModel by viewModels()
     private lateinit var databaseRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +37,7 @@ class DayFragment : Fragment() {
         binding = FragmentDayBinding.inflate(inflater, container, false)
 
         init()
+
         fetchData()
 
         return binding.root
@@ -61,30 +67,20 @@ class DayFragment : Fragment() {
 
     private fun fetchData() {
 
-        databaseRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listDayAttendance.clear()
+        listDayAttendance.clear()
+        viewModel.getListAttendance()
+        viewModel.fetchList().observe(requireActivity(),{
 
-
-                for (data in snapshot.children) {
-                    val response = data.getValue(AttendanceModel::class.java)
-
-                    if (response != null) {
-                        print("date ${response.created_at}")
-                        listDayAttendance.add(response)
-
-                    }
+            it.forEach { data ->
+                if (data != null){
+                    listDayAttendance.add(data)
                 }
-                stateUi()
-                Collections.reverse(listDayAttendance);
-                binding.rvDay.adapter?.notifyDataSetChanged()
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                stateUi()
-            }
-
+            stateUi()
+            Collections.reverse(listDayAttendance)
+            binding.rvDay.adapter?.notifyDataSetChanged()
         })
+
 
 
     }

@@ -23,7 +23,7 @@ class IntroPagerAdapter(private var image : List<Int>) : RecyclerView.Adapter<In
         init {
             ivIntro.setOnClickListener { v : View ->
                 val position = adapterPosition
-                Toast.makeText(itemView.context,"you clicked at ${position + 1}",Toast.LENGTH_SHORT).show()
+
             }
         }
 

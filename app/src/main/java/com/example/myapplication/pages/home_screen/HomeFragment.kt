@@ -12,11 +12,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.myapplication.utils.BaseParam
 import com.example.myapplication.utils.DataPref
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.model.AttendanceModel
+import com.example.myapplication.pages.home_screen.view_model.HomeViewModel
 import com.example.myapplication.utils.DateUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -30,6 +32,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var auth: FirebaseAuth
+    private val viewModel : HomeViewModel by viewModels()
     private lateinit var databaseRef: DatabaseReference
     private lateinit var body: AttendanceModel
 
@@ -147,14 +150,26 @@ class HomeFragment : Fragment() {
 
                clickCheckin()
 
-               databaseRef.push().setValue(body).addOnCompleteListener {
-                   if (it.isSuccessful) {
+               viewModel.postAttendance(body)
+               viewModel.isSuccessData().observe(requireActivity(),{
+                   if(it){
                        Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-                   } else {
-                       Toast.makeText(requireContext(), it.exception?.toString(), Toast.LENGTH_SHORT)
-                           .show()
+                   }else{
+                       viewModel.failMessage.observe(requireActivity(),{
+                           Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT)
+                               .show()
+                       })
+
                    }
-               }
+               })
+//               databaseRef.push().setValue(body).addOnCompleteListener {
+//                   if (it.isSuccessful) {
+//                       Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+//                   } else {
+//                       Toast.makeText(requireContext(), it.exception?.toString(), Toast.LENGTH_SHORT)
+//                           .show()
+//                   }
+//               }
            }else{
                Toast.makeText(requireContext(),"Please choose location",Toast.LENGTH_SHORT).show()
            }

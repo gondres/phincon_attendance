@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityIntroScreenBinding
 import com.example.myapplication.databinding.ActivityLoginScreenBinding
 import com.example.myapplication.databinding.ActivityRegisterScreenBinding
 import com.example.myapplication.pages.login_screen.LoginScreenActivity
+import com.example.myapplication.pages.register_screen.view_model.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterScreenBinding
     private lateinit var auth: FirebaseAuth
+    private val viewModel : RegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterScreenBinding.inflate(layoutInflater)
@@ -51,25 +54,19 @@ class RegisterScreenActivity : AppCompatActivity() {
 
             if (etEmail.text.isNotEmpty() && etFullName.text.isNotEmpty() && etPassword.text.isNotEmpty() && etRepeat.text.isNotEmpty()) {
                 if (checkPassword(password, repeatPassword)) {
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-                        {
-                            if (it.isSuccessful) {
-                                Toast.makeText(
-                                    this@RegisterScreenActivity,
-                                    "Register Successful",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    this@RegisterScreenActivity,
-                                    it.exception?.message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                    viewModel.postRegister(email,password)
+                    viewModel.isSuccessData().observe(this@RegisterScreenActivity,{
+                        if(it){
+                            Toast.makeText(this@RegisterScreenActivity,"Register Succesfull",Toast.LENGTH_SHORT).show()
+                            startActivity(intent)
+                            finish()
+                        }else{
+                            viewModel.showFailMessage().observe(this@RegisterScreenActivity,{
+                                Toast.makeText(this@RegisterScreenActivity,it,Toast.LENGTH_SHORT).show()
+                            })
                         }
-                    )
+                    })
+//
                 } else {
                     Toast.makeText(
                         this@RegisterScreenActivity,
