@@ -16,23 +16,15 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RegisterScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterScreenBinding
-    private lateinit var auth: FirebaseAuth
     private val viewModel : RegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterScreenBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
-
-        init()
         clickListener()
-
-
     }
 
-    private fun init() {
-        auth = FirebaseAuth.getInstance()
-    }
 
     private fun clickListener() {
         binding.tvLogin.setOnClickListener {
@@ -54,8 +46,7 @@ class RegisterScreenActivity : AppCompatActivity() {
 
             if (etEmail.text.isNotEmpty() && etFullName.text.isNotEmpty() && etPassword.text.isNotEmpty() && etRepeat.text.isNotEmpty()) {
                 if (checkPassword(password, repeatPassword)) {
-                    viewModel.postRegister(email,password)
-                    viewModel.isSuccessData().observe(this@RegisterScreenActivity,{
+                    viewModel.postRegister(email,password).observe(this@RegisterScreenActivity,{
                         if(it){
                             Toast.makeText(this@RegisterScreenActivity,"Register Succesfull",Toast.LENGTH_SHORT).show()
                             startActivity(intent)
@@ -66,7 +57,6 @@ class RegisterScreenActivity : AppCompatActivity() {
                             })
                         }
                     })
-//
                 } else {
                     Toast.makeText(
                         this@RegisterScreenActivity,

@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 
 class LoginScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginScreenBinding
-    private lateinit var auth: FirebaseAuth
     private val viewModel : LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +28,10 @@ class LoginScreenActivity : AppCompatActivity() {
         val view: View = binding.root
         setContentView(view)
 
-        init()
         clickListener()
 
     }
 
-
-    private fun init() {
-        auth = FirebaseAuth.getInstance()
-    }
 
     private fun clickListener() {
 
@@ -62,9 +56,8 @@ class LoginScreenActivity : AppCompatActivity() {
         val intent = Intent(this,MainActivity::class.java)
 
         if (email.isNotEmpty() && password.isNotEmpty()) {
-            viewModel.postLogin(email,password)
-            viewModel.isSuccess.observe(this,{
-                if(it){
+            viewModel.postLogin(email,password).observe(this,{
+                if (it){
                     startActivity(intent)
                     finish()
                 }else{

@@ -31,9 +31,7 @@ class HomeFragment : Fragment() {
 
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var auth: FirebaseAuth
-    private val viewModel : HomeViewModel by viewModels()
-    private lateinit var databaseRef: DatabaseReference
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var body: AttendanceModel
 
     private lateinit var location: String
@@ -43,6 +41,7 @@ class HomeFragment : Fragment() {
 
 
     private lateinit var sharedPref: SharedPreferences
+
     private var isCheckin: Boolean = false
     private var isClicked = false
 
@@ -60,9 +59,7 @@ class HomeFragment : Fragment() {
 
         init()
         locationOnClick()
-
         checkInCheckOut()
-
         updateTime()
 
 
@@ -85,9 +82,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun init() {
-        auth = FirebaseAuth.getInstance()
-        databaseRef = FirebaseDatabase.getInstance().reference.child("Attendances")
-            .child(auth.currentUser?.uid.toString())
+
         sharedPref = requireActivity().getSharedPreferences(
             BaseParam.attendaceSharedPref, Context.MODE_PRIVATE
         )
@@ -111,74 +106,66 @@ class HomeFragment : Fragment() {
 
         binding.ImageViewText.setOnClickListener {
 
-           if(locationOnClick() || DataPref.getCheckin(requireContext())){
-               if (!isCheckin) {
-                   editor.putBoolean("isCheckin", true)
-                   status = "Check In"
+            if (locationOnClick() || DataPref.getCheckin(requireContext())) {
+                if (!isCheckin) {
+                    editor.putBoolean("isCheckin", true)
+                    status = "Check In"
 
-                   DataPref.setLocation(requireContext(), location)
-                   DataPref.setAddress(requireContext(), address)
-                   DataPref.setImage(requireContext(), image)
+                    DataPref.setLocation(requireContext(), location)
+                    DataPref.setAddress(requireContext(), address)
+                    DataPref.setImage(requireContext(), image)
 
-                   body = AttendanceModel(
-                       status = status,
-                       location = location,
-                       address = address,
-                       image = image,
-                       created_at = time,
-                       hour = hour
-                   )
-               } else {
-                   editor.putBoolean("isCheckin", false)
-                   status = "Check Out"
+                    body = AttendanceModel(
+                        status = status,
+                        location = location,
+                        address = address,
+                        image = image,
+                        created_at = time,
+                        hour = hour
+                    )
+                } else {
+                    editor.putBoolean("isCheckin", false)
+                    status = "Check Out"
 
-                   location = DataPref.getLocation(requireContext())
-                   address = DataPref.getAddress(requireContext())
-                   image = DataPref.getImage(requireContext())
+                    location = DataPref.getLocation(requireContext())
+                    address = DataPref.getAddress(requireContext())
+                    image = DataPref.getImage(requireContext())
 
-                   body = AttendanceModel(
-                       status = status,
-                       location = location,
-                       address = address,
-                       image = image,
-                       created_at = time,
-                       hour = hour
-                   )
-                   DataPref.resetPref(requireContext())
-               }
-               editor.apply()
+                    body = AttendanceModel(
+                        status = status,
+                        location = location,
+                        address = address,
+                        image = image,
+                        created_at = time,
+                        hour = hour
+                    )
+                    DataPref.resetPref(requireContext())
+                }
+                editor.apply()
 
-               clickCheckin()
+                clickCheckin()
 
-               viewModel.postAttendance(body)
-               viewModel.isSuccessData().observe(requireActivity(),{
-                   if(it){
-                       Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-                   }else{
-                       viewModel.failMessage.observe(requireActivity(),{
-                           Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT)
-                               .show()
-                       })
+                viewModel.postAttendance(body).observe(requireActivity(), {
+                    if (it) {
+                        Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+                    } else {
+                        viewModel.failMessage.observe(requireActivity(), {
+                            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT)
+                                .show()
+                        })
+                    }
+                })
 
-                   }
-               })
-//               databaseRef.push().setValue(body).addOnCompleteListener {
-//                   if (it.isSuccessful) {
-//                       Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-//                   } else {
-//                       Toast.makeText(requireContext(), it.exception?.toString(), Toast.LENGTH_SHORT)
-//                           .show()
-//                   }
-//               }
-           }else{
-               Toast.makeText(requireContext(),"Please choose location",Toast.LENGTH_SHORT).show()
-           }
+            } else {
+                Toast.makeText(requireContext(), "Please choose location", Toast.LENGTH_SHORT)
+                    .show()
+            }
 
         }
 
     }
 
-    private fun locationOnClick() : Boolean {
+    private fun locationOnClick(): Boolean {
 
         binding.phinconContainer.setOnClickListener {
 
@@ -195,7 +182,7 @@ class HomeFragment : Fragment() {
             image = 0
 
 
-         isClicked = true
+            isClicked = true
         }
 
         binding.telkomselContainer.setOnClickListener {
@@ -404,7 +391,6 @@ class HomeFragment : Fragment() {
             )
         )
     }
-
 
 
 }

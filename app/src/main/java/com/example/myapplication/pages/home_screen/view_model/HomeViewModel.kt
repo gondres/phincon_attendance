@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.MainActivity
@@ -17,23 +18,20 @@ import java.util.*
  * Jakarta, Indonesia.
  */
 class HomeViewModel : ViewModel() {
-    val isSuccess: MutableLiveData<Boolean> = MutableLiveData()
+
     val failMessage: MutableLiveData<String> = MutableLiveData()
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
 
 
 
-    fun isSuccessData(): MutableLiveData<Boolean> {
-        return isSuccess
-    }
 
     fun showFailMessage(): MutableLiveData<String> {
         return failMessage
     }
 
-    fun postAttendance(body : AttendanceModel) {
-
+    fun postAttendance(body : AttendanceModel) : LiveData<Boolean> {
+        val isSuccess: MutableLiveData<Boolean> = MutableLiveData()
 
         auth = FirebaseAuth.getInstance()
         databaseRef = FirebaseDatabase.getInstance().reference.child("Attendances")
@@ -48,6 +46,8 @@ class HomeViewModel : ViewModel() {
                 isSuccess.postValue(false)
             }
         }
+
+        return isSuccess
     }
 
 }

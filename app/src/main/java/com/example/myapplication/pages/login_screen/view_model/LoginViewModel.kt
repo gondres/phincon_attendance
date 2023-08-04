@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.MainActivity
@@ -32,21 +33,24 @@ class LoginViewModel : ViewModel() {
         return failMessage
     }
 
-    fun postLogin(email : String, password:String) {
-
+    fun postLogin(email : String, password:String) : LiveData<Boolean> {
+        val isSuccessPost : MutableLiveData<Boolean> = MutableLiveData()
         auth = FirebaseAuth.getInstance()
         databaseRef = FirebaseDatabase.getInstance().reference.child("Attendances")
             .child(auth.currentUser?.uid.toString())
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-               isSuccess.postValue(true)
+//               isSuccess.postValue(true)
+               isSuccessPost.postValue(true)
             }
         }.addOnFailureListener {
-            isSuccess.postValue(false)
+            isSuccessPost.postValue(false)
+//            isSuccess.postValue(false)
             failMessage.postValue(it.message.toString())
 
         }
+        return isSuccessPost
     }
 
 }

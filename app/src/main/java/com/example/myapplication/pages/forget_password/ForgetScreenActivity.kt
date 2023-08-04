@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class ForgetScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityForgetPasswordScreenBinding
     private lateinit var auth: FirebaseAuth
-    private  val viewModel : ForgetViewModel by viewModels()
+    private val viewModel: ForgetViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,19 +41,21 @@ class ForgetScreenActivity : AppCompatActivity() {
         }
         binding.btnReset.setOnClickListener {
             val email = binding.etEmail.text.toString()
+            val intent = Intent(this, LoginScreenActivity::class.java)
             if (email.isNotEmpty()) {
-                viewModel.postForget(email)
-                viewModel.isSuccess.observe(this,{
-                    if (it){
+                viewModel.postForget(email).observe(this, {
+                    if (it) {
                         Toast.makeText(this, "Check email to reset password", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(this, LoginScreenActivity::class.java)
                         startActivity(intent)
                         finish()
-                    }else{
-                        Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
+                    } else {
+                        viewModel.failMessage.observe(this, {
+                            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                        })
                     }
                 })
+
             } else {
                 Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
             }
